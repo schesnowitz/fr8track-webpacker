@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FrontEnd</title>
+
+    <%= csrf_meta_tags %>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'css/app.min.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+ 
+
+  </head>
+
+<body data-sa-theme=<%= @app_setting.theme_color %>>
+<main class="main">
+<% render 'layouts/partials/page_loader' %>
+<%= render 'layouts/partials/header' %>
+<%= render 'layouts/partials/side_navigation' %>
+<%= render 'layouts/partials/themes' %>
+
+<section class="content">
+<%= bootstrap_flash %>
+<% if @app_setting.boxed_content == true %> 
+ <div class="content__inner">
+<% end %>
+<%= render 'layouts/partials/main_content' %>
+
+  <%= yield %>
+<%= render 'layouts/partials/footer' %>
+<% if @app_setting.boxed_content == true %> 
+  </div>
+<% end %>
+</section>
+
+</main>
+
+
+
+
+  </body>
+</html>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["GOOGLE_MAPS_KEY"]%>&callback=initMap">
+</script> 
+
