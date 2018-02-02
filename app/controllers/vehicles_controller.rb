@@ -5,9 +5,22 @@ class VehiclesController < ApplicationController
   # GET /vehicles.json
   def index
     @vehicles = Vehicle.all
+    @vehicle_locations = VehicleLocation.all
 
-    id = Vehicle.pluck(:api_id) # integer array
 
+  @vehicles.each do |vehicle_data|
+    @vehicle_api_id = vehicle_data.api_id
+    @vehicle_locations.each do |location_data|
+
+      if vehicle_data.api_id == location_data.api_vehicle_id 
+      # puts "vehicle_api_id: #{@vehicle_api_id} location_vehicle_id: #{location_data.api_vehicle_id} latitude: #{location_data.latitude} longitude: #{location_data.longitude} description: #{location_data.location_description}"
+
+      @vehicle = @vehicle_api_id.find(params[:api_id])
+      @locations = VehicleLocation.where(api_vehicle_id: @vehicle.api_id)
+      @current_location = @locations.last
+    end
+  end
+end
     
   end 
 

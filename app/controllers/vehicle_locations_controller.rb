@@ -16,6 +16,7 @@ class VehicleLocationsController < ApplicationController
   # GET /vehicle_locations/new
   def new
     @vehicle_location = VehicleLocation.new
+
   end
 
   # GET /vehicle_locations/1/edit
@@ -25,7 +26,8 @@ class VehicleLocationsController < ApplicationController
   # POST /vehicle_locations
   # POST /vehicle_locations.json
   def create
-    @vehicle_location = VehicleLocation.new(vehicle_location_params)
+    @vehicle = Vehicle.find(params[:vehicle_id])
+    @vehicle_location = @vehicle.vehicle_locations.build(vehicle_location_params)
 
     respond_to do |format|
       if @vehicle_location.save
@@ -70,6 +72,6 @@ class VehicleLocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vehicle_location_params
-      params.require(:vehicle_location).permit(:location_id, :time_located_at, :latitude, :longitude, :bearing, :engine_hours, :driver_api_id, :fuel, :odometer, :speed, :location_description, :driver_company_id, :edl_id, :edl_identifier, :edl_model, :api_vehicle_id )
+      params.require(:vehicle_location).permit(:location_id, :time_located_at, :latitude, :longitude, :bearing, :engine_hours, :driver_api_id, :fuel, :odometer, :speed, :location_description, :driver_company_id, :edl_id, :edl_identifier, :edl_model, :api_vehicle_id, :vehicle_id, :api_id )
     end
 end

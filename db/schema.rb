@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(version: 2018_01_30_062355) do
   end
 
   create_table "vehicle_locations", force: :cascade do |t|
+    t.integer "api_id"
     t.integer "api_vehicle_id"
     t.string "location_id"
     t.datetime "time_located_at"
@@ -216,9 +217,11 @@ ActiveRecord::Schema.define(version: 2018_01_30_062355) do
     t.integer "edl_id"
     t.string "edl_identifier"
     t.string "edl_model"
+    t.integer "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_api_id"], name: "index_vehicle_locations_on_driver_api_id"
+    t.index ["vehicle_id"], name: "index_vehicle_locations_on_vehicle_id"
   end
 
   create_table "vehicles", force: :cascade do |t|

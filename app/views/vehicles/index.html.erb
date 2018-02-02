@@ -52,3 +52,18 @@
 
 <%= link_to 'New Vehicle', new_vehicle_path %><br>
 
+
+ <% @vehicles.each do |vehicle_data| %>
+
+    <% @vehicle_locations.each do |location_data| %>
+
+     <% if vehicle_data.api_id == location_data.api_vehicle_id %>
+      <% if location_data == @vehicle_locations.last %>
+
+    <%= "First Name: #{vehicle_data.driver_first_name} API ID: #{vehicle_data.api_id} Location: #{location_data.location_description}" %>
+  <% end %>
+        
+
+    <% end %>
+  <% end %>
+<% end %>

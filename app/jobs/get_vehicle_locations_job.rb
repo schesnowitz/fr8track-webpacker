@@ -42,6 +42,8 @@ class GetVehicleLocationsJob < ApplicationJob
   end
 
 
+
+
         location = VehicleLocation.new
         location.driver_api_id = driver_api_id
         location.location_id = location_id

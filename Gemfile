@@ -27,6 +27,8 @@ gem 'sidekiq-cron', '~> 0.6.3'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'httparty', '~> 0.15.6'
 gem 'local_time', '~> 2.0'
+gem 'geocoder', '~> 1.4', '>= 1.4.5'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

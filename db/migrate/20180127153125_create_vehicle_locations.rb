@@ -1,6 +1,7 @@
 class CreateVehicleLocations < ActiveRecord::Migration[5.2]
   def change
     create_table :vehicle_locations do |t|
+      t.integer :api_id
       t.integer :api_vehicle_id 
       t.string :location_id
       t.datetime :time_located_at
@@ -17,6 +18,7 @@ class CreateVehicleLocations < ActiveRecord::Migration[5.2]
       t.integer :edl_id 
       t.string :edl_identifier 
       t.string :edl_model
+      t.integer :vehicle_id, index: true
       t.timestamps
     end
   end
