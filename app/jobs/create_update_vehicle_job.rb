@@ -18,7 +18,7 @@ class CreateUpdateVehicleJob < ApplicationJob
       response_edl_model = vehicle.eld_device.model
     end
  
-      api_id = vehicle.id
+      response_api_vehicle_id = vehicle.id
       response_vehicle_number = vehicle.number 
       response_vehicle_status = vehicle.status 
       response_vehicle_vin = vehicle.vin
@@ -54,9 +54,9 @@ class CreateUpdateVehicleJob < ApplicationJob
     end      
 
 
-        new_vehicle = Vehicle.find_or_initialize_by(api_id: api_id)
+        new_vehicle = Vehicle.find_or_initialize_by(api_vehicle_id: response_api_vehicle_id)
 
-          new_vehicle.api_id = api_id
+          new_vehicle.api_vehicle_id = response_api_vehicle_id
           new_vehicle.number = response_vehicle_number
           new_vehicle.status = response_vehicle_status
           new_vehicle.ifta = response_vehicle_ifta

@@ -2,7 +2,7 @@ class GetVehicleLocationsJob < ApplicationJob
 
 
   def perform(*args)
-    @id = Vehicle.pluck(:api_id) # integer array
+    @id = Vehicle.pluck(:api_vehicle_id) # integer array
     @query = { 
       'vehicle_ids': @id
     }
@@ -18,7 +18,7 @@ class GetVehicleLocationsJob < ApplicationJob
     location = data.vehicle.current_location
 
   if !vehicle.nil?
-    vehicle_api_id                  = vehicle.id
+    api_vehicle_id                  = vehicle.id
   end
 
 
@@ -49,7 +49,7 @@ class GetVehicleLocationsJob < ApplicationJob
         location.location_id = location_id
         location.latitude = lat
         location.longitude = lon  
-        location.api_vehicle_id  = vehicle_api_id
+        location.api_vehicle_id  = api_vehicle_id
         location.time_located_at = time_located_at
         location.engine_hours = engine_hours
         location.bearing = bearing

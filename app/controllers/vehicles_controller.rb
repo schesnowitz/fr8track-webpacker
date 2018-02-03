@@ -9,25 +9,24 @@ class VehiclesController < ApplicationController
 
 
   @vehicles.each do |vehicle_data|
-    @vehicle_api_id = vehicle_data.api_id
+    @vehicle_api_id = vehicle_data.api_vehicle_id
     @vehicle_locations.each do |location_data|
 
-      if vehicle_data.api_id == location_data.api_vehicle_id 
+      if vehicle_data.api_vehicle_id == location_data.api_vehicle_id &&@vehicle_locations.last && !location_data.latitude.nil?
       # puts "vehicle_api_id: #{@vehicle_api_id} location_vehicle_id: #{location_data.api_vehicle_id} latitude: #{location_data.latitude} longitude: #{location_data.longitude} description: #{location_data.location_description}"
 
-      @vehicle = @vehicle_api_id.find(params[:api_id])
-      @locations = VehicleLocation.where(api_vehicle_id: @vehicle.api_id)
-      @current_location = @locations.last
+      puts "vehicle_api_id: #{@vehicle_api_id} #{location_data.latitude}"
     end
   end
 end
     
   end 
 
+  
   # GET /vehicles/1
   # GET /vehicles/1.json
   def show
-    @locations = VehicleLocation.where(api_vehicle_id: @vehicle.api_id)
+    @locations = VehicleLocation.where(api_vehicle_id: @vehicle.api_vehicle_id)
     @current_location = @locations.last
   end
 
@@ -115,6 +114,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vehicle_params
-      params.require(:vehicle).permit(:api_id, :api_vehicle_company_id, :number, :status, :ifta, :vin, :make, :model, :year, :license_plate_state, :license_plate_number, :metric_units, :fuel_type, :prevent_auto_odometer_entry, :edl_device_id, :edl_identifier, :edl_model, :api_driver_id, :driver_first_name, :driver_last_name, :driver_username, :driver_email, :driver_internal_id, :driver_status, :driver_role)
+      params.require(:vehicle).permit(:api_vehicle_id, :api_vehicle_company_id, :number, :status, :ifta, :vin, :make, :model, :year, :license_plate_state, :license_plate_number, :metric_units, :fuel_type, :prevent_auto_odometer_entry, :edl_device_id, :edl_identifier, :edl_model, :api_driver_id, :driver_first_name, :driver_last_name, :driver_username, :driver_email, :driver_internal_id, :driver_status, :driver_role)
     end
 end

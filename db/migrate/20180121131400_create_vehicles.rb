@@ -2,7 +2,7 @@ class CreateVehicles < ActiveRecord::Migration[5.2]
   def change
     create_table :vehicles do |t|
       t.integer :api_vehicle_company_id
-      t.integer :api_id
+      t.integer :api_vehicle_id
       t.string :number
       t.string :status
       t.string :ifta

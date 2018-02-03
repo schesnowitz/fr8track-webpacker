@@ -226,7 +226,7 @@ ActiveRecord::Schema.define(version: 2018_01_30_062355) do
 
   create_table "vehicles", force: :cascade do |t|
     t.integer "api_vehicle_company_id"
-    t.integer "api_id"
+    t.integer "api_vehicle_id"
     t.string "number"
     t.string "status"
     t.string "ifta"

@@ -29,7 +29,7 @@
     <% @vehicles.each do |vehicle| %>
       <tr>
         <td><%= "#{vehicle.driver_first_name} #{vehicle.driver_last_name}" %></td>
-        <td><%= vehicle.api_id %></td>
+        <td><%= vehicle.api_vehicle_id %></td>
         <td><%= vehicle.number %></td>
         <td><%= vehicle.status %></td>
         <td><%= vehicle.ifta %></td>
@@ -57,12 +57,13 @@
 
     <% @vehicle_locations.each do |location_data| %>
 
-     <% if vehicle_data.api_id == location_data.api_vehicle_id %>
-      <% if location_data == @vehicle_locations.last %>
+     <% if vehicle_data.api_vehicle_id == location_data.api_vehicle_id &&@vehicle_locations.last && !location_data.latitude.nil? %>
 
-    <%= "First Name: #{vehicle_data.driver_first_name} API ID: #{vehicle_data.api_id} Location: #{location_data.location_description}" %>
-  <% end %>
-        
+
+    <%= "First Name: #{vehicle_data.driver_first_name} API ID: #{vehicle_data.api_vehicle_id} Location: #{location_data.location_description} #{location_data.latitude}" %>
+
+
+  
 
     <% end %>
   <% end %>
